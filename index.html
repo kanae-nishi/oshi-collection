@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>MADAMADA</title>
+
+        <!-- ① Webフォントを読み込む（Google Fonts） -->    
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    
+        <!-- ② 自分で書くCSSファイルを読み込む -->
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+
+    <body>
+        <h1 id="site-title">MADAMADA</h1>
+
+        <div class="top-img">
+        <img src="https://storage.googleapis.com/studio-cms-assets/projects/JpOLQrkLqQ/s-3840x2560_v-frms_webp_9948356d-e4f9-43b9-b64a-82c7e8bf9698_middle.webp"
+            alt="MADAMADAの画像">
+            
+            <a href="https://madamada-official.com/"
+            target="_blank">
+            もっと詳しく見る
+            </a>  
+        </div>
+
+        <p class="site-description">MADAMADAのカワイイを伝えるサイトです</p>
+        <p class="site-description">MADAMADAは子供に人気なアイドルです</p>
+
+        <!--メンバー紹介-->
+        <div class="item-card">
+            <h2 class="item-title">MADAMADAのメンバー</h2>
+
+            <img src="https://madamada-official.com/profile/CONTENT_20251210125418"
+            alt="こころの画像">
+            <p class="site-description">こころ</p>
+
+            <img src="https://madamada-official.com/profile/CONTENT_20251210125600"
+            alt="おとはの画像">
+            <p class="site-description">おとは</p>
+
+            <img src="https://madamada-official.com/profile/CONTENT_20251210125735"
+            alt="こじろうの画像">
+            <p class="site-description">こじろう</p>
+
+            <img src="https://madamada-official.com/profile/CONTENT_20251210130154"
+            alt="ここの画像">
+            <p class="site-description">ここ</p>
+
+                <img src="https://madamada-official.com/profile/CONTENT_20251210130346"
+            alt="りおの画像">
+            <p class="site-description">りお</p>
+
+            <img src="https://madamada-official.com/profile/CONTENT_20251210150953"
+            alt="きいちの画像">
+            <p class="site-description">きいち</p>
+        </div>
+        
+        <!-- リアクションフォーム -->
+        <section>
+        <h2>リアクション</h2>
+        <form class="reaction-form">
+            <label>この子達どう？？？</label><br>
+            <input type="radio" name="reaction" value="like"> カワイイ！！
+            <input type="radio" name="reaction" value="want"> 好き！！
+            <br>
+            <button type="button" class="submit-btn">送信</button>
+        </form>
+
+        <p id="form-message"></p>
+
+        <button id="like-btn" type="button" class="submit-btn">❤️ いいね</button> 
+        <span id="like-count">0</span>
+
+        </section>
+    
+    <script src="script.js"></script>
+    </body>
+</html> 
