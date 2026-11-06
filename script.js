@@ -30,3 +30,35 @@ const items = [
     { title: 'こころ', category: 'アイドル', description: 'MADAMADA' },
     { title: 'おとは', category: 'アイドル', description: 'MADAMADA' },
 ];
+
+// ===== S8: Supabaseからデータを取ってくる =====
+const SUPABASE_URL = "https://wwbpnkippvtwmbnowiwf.supabase.co";
+const SUPABASE_KEY = "sb_publishable_A75pEqf_3EvdLC-OuHNXMw_jF3xpB0C";
+
+async function loadItems() {
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/items?select=*`, {
+    headers: {
+      apikey: SUPABASE_KEY
+    }
+  });
+  const data = await res.json();
+  renderItems(data);
+}
+
+function renderItems(items) {
+  const list = document.getElementById("item-list");
+  list.innerHTML = "";
+
+  for (const item of items) {
+    const card = document.createElement("div");
+    card.className = "item-card";
+    card.innerHTML = `
+      <h3>${item.title}</h3>
+      <p class="category">${item.category}</p>
+      <p>${item.description ?? ""}</p>
+    `;
+    list.appendChild(card);
+  }
+}
+
+loadItems();
