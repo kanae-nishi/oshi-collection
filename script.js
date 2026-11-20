@@ -62,3 +62,52 @@ function renderItems(items) {
 }
 
 loadItems();
+
+// ===== S9: フォームからデータベースに書き込む =====
+async function addItem(title, category, description) {
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/items`, {
+    method: "POST",
+    headers: {
+      apikey: SUPABASE_KEY,
+      "Content-Type": "application/json",
+      Prefer: "return=representation"
+    },
+    body: JSON.stringify({ title, category, description })
+  });
+
+  if (!res.ok) {
+    const err = await res.json();
+    throw new Error(err.message ?? `エラー（${res.status}）`);
+  }
+
+  const data = await res.json();
+  console.log(res.status, data);
+}
+
+document.getElementById("add-btn").addEventListener("click", async () => {
+  // S3のリアクション用 #form-message と分けるため add-form-message を使う
+  const msg = document.getElementById("add-form-message");
+  const btn = document.getElementById("add-btn");
+
+  const title = document.getElementById("input-title").value;
+  const category = document.getElementById("input-category").value;
+  const description = document.getElementById("input-description").value;
+
+  btn.disabled = true;
+  msg.textContent = "追加中...";
+
+  try {
+    await addItem(title, category, description);
+
+    document.getElementById("input-title").value = "";
+    document.getElementById("input-category").value = "";
+    document.getElementById("input-description").value = "";
+
+    await loadItems();
+    msg.textContent = "追加しました！";
+  } catch (e) {
+    msg.textContent = "失敗しました：" + e.message;
+  } finally {
+    btn.disabled = false;
+  }
+});
